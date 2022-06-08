@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSave()">
+  <h1 matDialogTitle>Edit user {{ idUser }}</h1>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="nameControl.errors?.minLength">Name must have at least 3 characters</mat-error>
+      <mat-error *ngIf="nameControl.errors?.pattern">
+        Name must start with a letter, have at least 3 characters (letter [a-z], number [0-9], dash [-] or underscore
+        [_]) and end with a letter or number
+      </mat-error>
+      <mat-error *ngIf="nameControl.errors?.uniqueUserId">Name already exists</mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" [mat-dialog-close]="null" [disabled]="saving">Close</button>
+    <button
+      mat-button
+      type="submit"
+      [disabled]="saving || form.invalid || form.pending || nameControl.value === idUser"
+    >
+      Save
+    </button>
+  </mat-dialog-actions>
+
+  <mat-progress-bar mode="indeterminate" class="footer" *ngIf="saving"></mat-progress-bar>
+</form>

@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.mat-card {
+  cursor: pointer;
+
+  &:hover {
+    button {
+      transform: scale(1.15);
+    }
+  }
+}
+
+button {
+  transition: transform 200ms ease;
+}

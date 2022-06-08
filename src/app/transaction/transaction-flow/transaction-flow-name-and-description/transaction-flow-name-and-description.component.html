@@ -1,0 +1,50 @@
+<h3>Here you put the name and description of the transaction</h3>
+
+<form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      formControlName="name"
+      [maxlength]="transactionCreateDto.nameMaxLength"
+      [minLength]="transactionCreateDto.nameMinLength"
+      (keydown.enter)="descriptionTextarea.focus()"
+      appAutoFocus
+    />
+    <mat-error *ngIf="form.controls.name.errors?.required">Name is required</mat-error>
+    <mat-error *ngIf="form.controls.name.errors?.minLength">
+      Name must have more than {{ transactionCreateDto.nameMinLength }} characters
+    </mat-error>
+    <mat-error *ngIf="form.controls.name.errors?.required">
+      Name must have less than {{ transactionCreateDto.nameMaxLength }} characters
+    </mat-error>
+    <mat-hint>Max {{ transactionCreateDto.nameMaxLength }} characters</mat-hint>
+    <mat-hint align="end"> {{ form.controls.name.value.length }} / {{ transactionCreateDto.nameMaxLength }} </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      formControlName="description"
+      [maxlength]="transactionCreateDto.descriptionMaxLength"
+      rows="5"
+      cdkTextareaAutosize
+      [cdkAutosizeMaxRows]="10"
+      (keydown.control.enter)="onEnter()"
+      #descriptionTextarea
+    ></textarea>
+    <mat-error *ngIf="form.controls.description.errors?.maxlength">
+      Description must have less than {{ transactionCreateDto.descriptionMaxLength }} characters
+    </mat-error>
+    <mat-hint>Max {{ transactionCreateDto.descriptionMaxLength }} characters</mat-hint>
+    <mat-hint align="end">
+      {{ form.controls.description.value?.length ?? 0 }} / {{ transactionCreateDto.descriptionMaxLength }}
+    </mat-hint>
+  </mat-form-field>
+  <app-button-actions validationOnEnter>
+    <a mat-raised-button [routerLink]="['../../']">Back</a>
+    <a mat-raised-button color="primary" [routerLink]="['../', 'person']" [disabled]="form.invalid" (click)="save()">
+      Next
+    </a>
+  </app-button-actions>
+</form>

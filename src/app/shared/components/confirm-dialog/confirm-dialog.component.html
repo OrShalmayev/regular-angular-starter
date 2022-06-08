@@ -1,0 +1,16 @@
+<h1 matDialogTitle *ngIf="data.title">{{ data.title }}</h1>
+<mat-dialog-content>
+  {{ data.content }}
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    *ngFor="let button of buttons; trackBy: trackByButton"
+    (click)="action(button)"
+    [disabled]="loading"
+  >
+    {{ button.title }}
+  </button>
+</mat-dialog-actions>
+
+<mat-progress-bar mode="indeterminate" class="footer" *ngIf="loading"></mat-progress-bar>

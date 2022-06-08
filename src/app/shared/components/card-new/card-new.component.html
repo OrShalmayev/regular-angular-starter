@@ -1,0 +1,15 @@
+<mat-card mat-ripple (click)="onClick($event)" class="card-selectable" [class.disabled]="disabled">
+  <div [matTooltip]="tooltip ?? ''" [matTooltipDisabled]="!tooltip">
+    <a *ngIf="routerLink; else notLink" mat-fab color="accent" [disabled]="disabled" [routerLink]="routerLink">
+      <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+    </a>
+    <ng-template #notLink>
+      <button mat-fab color="accent" [disabled]="disabled">
+        <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+      </button>
+    </ng-template>
+    <ng-template #iconTemplate>
+      <mat-icon>{{ icon }}</mat-icon>
+    </ng-template>
+  </div>
+</mat-card>

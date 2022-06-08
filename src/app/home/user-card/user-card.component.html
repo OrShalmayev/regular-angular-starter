@@ -1,0 +1,24 @@
+<a [routerLink]="['users', name, 'transactions']">
+  <mat-card mat-ripple class="card-selectable">
+    <div class="name">{{ name }}</div>
+    <div class="total-to-receive">{{ totalToReceive | currency: 'R$' }}</div>
+    <div class="actions">
+      <button
+        mat-icon-button
+        (click)="onEdit($event)"
+        (mousedown)="$event.stopPropagation()"
+        [disabled]="loadingEditModal"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="onDelete($event)"
+        (mousedown)="$event.stopPropagation()"
+        [disabled]="loadingDeleteModal"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+</a>

@@ -1,0 +1,10 @@
+# Add files here to ignore them from prettier formatting
+
+/dist
+/coverage
+yarn.lock
+.prettierignore
+package.json.yarn
+.gitignore
+*.png
+yarn-error.log

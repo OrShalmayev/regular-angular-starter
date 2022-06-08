@@ -1,0 +1,39 @@
+<app-go-back-button routerLink="/"></app-go-back-button>
+
+<button mat-fab appUtility [matMenuTriggerFor]="menu">
+  <mat-icon>filter_alt</mat-icon>
+</button>
+
+<mat-menu #menu>
+  <button *ngLet="showSettled$ | async as showSettled" mat-menu-item (click)="onShowSettledChange(!showSettled)">
+    <mat-pseudo-checkbox [state]="showSettled ? 'checked' : 'unchecked'"> </mat-pseudo-checkbox>
+    Show settled
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="menuPeople">
+    <mat-icon>person</mat-icon>
+    Person
+  </button>
+</mat-menu>
+
+<mat-menu #menuPeople>
+  <button
+    mat-menu-item
+    *ngFor="let person of people$ | async; trackBy: trackByIdName"
+    (click)="onPersonChange($event, person)"
+  >
+    <mat-pseudo-checkbox [state]="person.checked ? 'checked' : 'unchecked'"> </mat-pseudo-checkbox>
+    {{ person.name }}
+  </button>
+  <button mat-menu-item (click)="clearPersonFilter()">
+    <mat-icon>clear_all</mat-icon>
+    Clear
+  </button>
+</mat-menu>
+
+<div class="cards">
+  <app-card-new routerLink="new"></app-card-new>
+  <app-user-transaction-card
+    *ngFor="let transaction of transactions$ | async; trackBy: trackByTransaction"
+    [transaction]="transaction"
+  ></app-user-transaction-card>
+</div>

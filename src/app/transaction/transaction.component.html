@@ -1,0 +1,69 @@
+<app-go-back-button link="../" tooltip="Back to transactions"></app-go-back-button>
+
+<button mat-fab appUtility (click)="onDelete()" matTooltip="Delete transaction">
+  <mat-icon>delete</mat-icon>
+</button>
+
+<a mat-fab appUtility matTooltip="Edit transaction" routerLink="edit">
+  <mat-icon>edit</mat-icon>
+</a>
+
+<a mat-fab appUtility matTooltip="Add new transaction item" routerLink="add-item">
+  <mat-icon>add</mat-icon>
+</a>
+
+<!-- TODO add no-data-found message -->
+<!-- TODO add button to edit transaction item -->
+<!-- TODO add button to delete transaction item -->
+<!-- TODO add button to edit transaction, re-use layout from adding new transaction to edit -->
+
+<ng-container *ngIf="transaction$ | async as transaction">
+  <div class="summary">
+    <!-- TODO improve summary of transaction -->
+    <h1>{{ transaction.name }} ({{ transaction.date | dateBr }})</h1>
+    <h3>{{ transaction.personName }}</h3>
+    <div>{{ transaction.total }}</div>
+    <p *ngIf="transaction.description">{{ transaction.description }}</p>
+    <mat-divider></mat-divider>
+  </div>
+
+  <div class="no-data-found" *ngIf="!transaction.years.length">
+    <h2>No transaction items found!</h2>
+    <a mat-raised-button color="accent" routerLink="add-item">Add a new one</a>
+  </div>
+
+  <ng-container *ngFor="let year of transaction.years; trackBy: trackByYear">
+    <div class="title">
+      <h2>{{ year.year }}</h2>
+      <h2>{{ year.total | currency: 'R$' }}</h2>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel
+        *ngFor="let month of year.months; trackBy: trackByMonth"
+        [expanded]="month.id === transaction.opened"
+        (afterExpand)="onAfterExpand(month.id)"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ month.description }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ month.total | currency: 'R$' }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-list>
+          <ng-container *ngFor="let item of month.items; trackBy: trackByItem">
+            <mat-list-item>
+              <div matLine>
+                <span class="date">{{ item.description }}</span>
+                <span class="value">{{ item.value | currency: 'R$' }}</span>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+</ng-container>

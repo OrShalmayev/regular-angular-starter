@@ -1,0 +1,18 @@
+<h3>{{ messages.summaryTitle }}</h3>
+
+<ng-container *ngIf="summary$ | async as summary">
+  <div class="container">
+    <p *ngIf="!summary.length">No data found</p>
+    <ng-container *ngFor="let item of summary; trackBy: trackBySummary">
+      <div class="title">{{ item.title }}</div>
+      <div class="value">{{ item.value }}</div>
+    </ng-container>
+  </div>
+
+  <app-button-actions>
+    <a mat-raised-button [routerLink]="['../date-and-total']" [disabled]="loading">Back</a>
+    <button mat-raised-button color="primary" (click)="create()" [disabled]="loading || !summary.length">
+      {{ messages.summarySaveButton }}
+    </button>
+  </app-button-actions>
+</ng-container>

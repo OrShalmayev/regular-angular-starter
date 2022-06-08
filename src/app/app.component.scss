@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+main {
+  $padding-default: calc(1rem + var(--navbar-height));
+
+  padding: calc(#{$padding-default} + 5rem) 1rem 1rem;
+
+  @media (min-width: 599px) {
+    max-width: none;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1320px;
+  }
+
+  margin: auto;
+}

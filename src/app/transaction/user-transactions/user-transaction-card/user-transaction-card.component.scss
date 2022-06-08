@@ -1,0 +1,23 @@
+@use 'src/styles/variables' as var;
+@use 'src/styles/mixins' as mixins;
+
+:host {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+.total-received {
+  color: var.$success-color;
+}
+
+.total-to-receive {
+  color: var.$warn-color;
+}
+
+.description {
+  @include mixins.clamp(1);
+  word-break: break-word;
+}
