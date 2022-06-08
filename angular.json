@@ -1,24 +1,10 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "c7014db0-3956-4182-9812-c448b1bfb445",
-    "schematicCollections": ["@angular-eslint/schematics"]
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "regular-angular-starter": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "displayBlock": true,
-          "changeDetection": "OnPush"
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
