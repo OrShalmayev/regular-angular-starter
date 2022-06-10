@@ -13,7 +13,6 @@ import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ngx-currency';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { DateInterceptor } from './core/interceptors/date.interceptor';
 import { LocaleMonthsProvider } from './core/locale-months.token';
