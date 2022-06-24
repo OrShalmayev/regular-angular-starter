@@ -18,7 +18,7 @@ import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { DateInterceptor } from './core/interceptors/date.interceptor';
 import { LocaleMonthsProvider } from './core/tokens/locale-months.token';
 import { NAVIGATOR } from './core/tokens/navigator.token';
-import { WINDOW, WINDOW_PROVIDERS } from './core/window.service';
+import { WINDOW, WINDOW_PROVIDERS } from './core/services/window.service';
 import { GoBackButtonStoreProviders } from './shared/components/go-back-button/go-back-button.store';
 import { UtilitiesStoreProviders } from './shared/components/utilities/utilities.store';
 import { StoreModule } from './shared/store/store.module';
