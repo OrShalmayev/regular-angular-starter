@@ -19,7 +19,6 @@ import { LocaleMonthsProvider } from './core/locale-months.token';
 import { NAVIGATOR } from './core/navigator.token';
 import { WINDOW, WINDOW_PROVIDERS } from './core/window.service';
 import { GoBackButtonStoreProviders } from './shared/components/go-back-button/go-back-button.store';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { UtilitiesStoreProviders } from './shared/components/utilities/utilities.store';
 import { StoreModule } from './shared/store/store.module';
 
