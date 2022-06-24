@@ -10,10 +10,10 @@ import { RouteParamEnum } from '@model/route-param.enum';
 import { NgLetDirective } from '@shared/directives/let.directive';
 
 @Component({
-    selector: 'app-navbar',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'shared-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, NgLetDirective, RouterModule],
 })
