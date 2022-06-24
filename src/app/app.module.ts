@@ -8,7 +8,6 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@ang
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AnyObject } from '@shared/utils/type';
 import dateFnsLocaleEN from 'date-fns/locale/en-US';
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ngx-currency';
 
@@ -16,12 +15,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { DateInterceptor } from './core/interceptors/date.interceptor';
+import { WINDOW, WINDOW_PROVIDERS } from './core/services/window.service';
 import { LocaleMonthsProvider } from './core/tokens/locale-months.token';
 import { NAVIGATOR } from './core/tokens/navigator.token';
-import { WINDOW, WINDOW_PROVIDERS } from './core/services/window.service';
 import { GoBackButtonStoreProviders } from './shared/components/go-back-button/go-back-button.store';
 import { UtilitiesStoreProviders } from './shared/components/utilities/utilities.store';
 import { StoreModule } from './shared/store/store.module';
+
+import { AnyObject } from '@shared/utils/type';
 
 registerLocaleData(localeEN);
 
