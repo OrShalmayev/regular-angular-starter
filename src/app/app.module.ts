@@ -8,6 +8,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@ang
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnyObject } from '@shared/utils/type';
 import dateFnsLocaleEN from 'date-fns/locale/en-US';
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ngx-currency';
 
@@ -15,8 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { DateInterceptor } from './core/interceptors/date.interceptor';
-import { LocaleMonthsProvider } from './core/locale-months.token';
-import { NAVIGATOR } from './core/navigator.token';
+import { LocaleMonthsProvider } from './core/tokens/locale-months.token';
+import { NAVIGATOR } from './core/tokens/navigator.token';
 import { WINDOW, WINDOW_PROVIDERS } from './core/window.service';
 import { GoBackButtonStoreProviders } from './shared/components/go-back-button/go-back-button.store';
 import { UtilitiesStoreProviders } from './shared/components/utilities/utilities.store';
@@ -52,7 +53,7 @@ function currencyMaskConfigFactory(): CurrencyMaskConfig {
         ...WINDOW_PROVIDERS,
         {
             provide: NAVIGATOR,
-            useFactory: (window: Window | Record<string, unknown>) => window.navigator ?? {},
+            useFactory: (window: Window | AnyObject) => window.navigator ?? {},
             deps: [WINDOW],
         },
         { provide: HTTP_INTERCEPTORS, useExisting: ApiInterceptor, multi: true },
