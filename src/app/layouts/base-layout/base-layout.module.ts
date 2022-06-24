@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { NavbarComponent } from '@shared/components/navbar/navbar.component';
+
 const ROUTES: Routes = [
     {
         path: '',
@@ -10,6 +12,6 @@ const ROUTES: Routes = [
 ];
 @NgModule({
     declarations: [],
-    imports: [CommonModule, RouterModule.forChild(ROUTES)],
+    imports: [CommonModule, RouterModule.forChild(ROUTES), NavbarComponent],
 })
 export class BaseLayoutModule {}

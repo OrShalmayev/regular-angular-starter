@@ -4,16 +4,16 @@ import { createStore, withProps } from '@ngneat/elf';
 import { createStoreProviders } from '@shared/store/create-store-providers';
 
 export interface GoBackButtonState {
-  buttons: Set<number>;
+    buttons: Set<number>;
 }
 
 const store = createStore(
-  {
-    name: 'go-back-button',
-  },
-  withProps<GoBackButtonState>({
-    buttons: new Set(),
-  })
+    {
+        name: 'go-back-button',
+    },
+    withProps<GoBackButtonState>({
+        buttons: new Set(),
+    })
 );
 
 const [GoBackButtonStoreProviders, BaseClass, useFactory] = createStoreProviders(store);

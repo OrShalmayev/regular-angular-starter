@@ -46,7 +46,6 @@ function currencyMaskConfigFactory(): CurrencyMaskConfig {
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        NavbarComponent,
         MatDateFnsModule,
         StoreModule.forRoot([GoBackButtonStoreProviders, UtilitiesStoreProviders]),
     ],
