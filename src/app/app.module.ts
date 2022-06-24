@@ -58,7 +58,7 @@ function currencyMaskConfigFactory(): CurrencyMaskConfig {
             deps: [WINDOW],
         },
         { provide: HTTP_INTERCEPTORS, useExisting: ApiInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useExisting: DateInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useExisting: DateInterceptor, multi: true },
         { provide: LOCALE_ID, useValue: 'en-US' },
         { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } as MatFormFieldDefaultOptions },
         { provide: MAT_DATE_LOCALE, useValue: dateFnsLocaleEN },
