@@ -6,7 +6,6 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
-import { BooleanInput, coerceBooleanProperty } from 'st-utils';
 
 @Component({
   selector: 'app-card-new',
@@ -35,8 +34,8 @@ export class CardNewComponent {
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(loading: BooleanInput) {
-    this._disabled = coerceBooleanProperty(loading);
+  set disabled(loading: boolean) {
+    this._disabled = loading===true;
   }
 
   @Output() readonly cardClick = new EventEmitter<MouseEvent>();
