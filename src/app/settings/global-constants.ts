@@ -17,5 +17,4 @@ export const GlobalConstantsToken = new InjectionToken<IGlobalConstants>('Global
 export const GlobalConstantsProvider: Provider = {
     provide: GlobalConstantsToken,
     useClass: GlobalConstants,
-    deps: [],
 };
