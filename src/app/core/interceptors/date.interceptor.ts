@@ -1,7 +1,8 @@
 import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { isArray, isObject, isString } from 'st-utils';
+import { isArray, isObject, isString } from 'lodash';
+import { AnyObject } from '@shared/utils/type';
 
 @Injectable({ providedIn: 'root' })
 export class DateInterceptor implements HttpInterceptor {
@@ -28,7 +29,7 @@ export class DateInterceptor implements HttpInterceptor {
     return value;
   }
 
-  handleObject(object: Record<string, unknown>): unknown {
+  handleObject(object: AnyObject): unknown {
     return Object.entries(object).reduce((newObject, [key, value]) => {
       if (isArray(value)) {
         value = this.handleArray(value);
