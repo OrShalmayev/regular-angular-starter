@@ -6,7 +6,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { map, tap } from 'rxjs';
 
-import { RouteParamEnum } from '@model/route-param.enum';
 import { NgLetDirective } from '@shared/directives/let.directive';
 
 @Component({
@@ -18,13 +17,4 @@ import { NgLetDirective } from '@shared/directives/let.directive';
     imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, NgLetDirective, RouterModule],
 })
 export class NavbarComponent {
-    constructor(private readonly activatedRoute: ActivatedRoute) {}
-
-    readonly idUser$ = this.activatedRoute.params.pipe(
-        tap(_ => {
-            debugger;
-        }),
-        map(params => params[RouteParamEnum.idUser])
-    );
-    isMouseOver = false;
 }
