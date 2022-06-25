@@ -10,6 +10,6 @@ const ROUTES: Routes = [
 ];
 @NgModule({
     declarations: [],
-    imports: [CommonModule, RouterModule.forRoot(ROUTES)],
+    imports: [CommonModule, RouterModule.forChild(ROUTES)],
 })
 export class PagesModule {}
