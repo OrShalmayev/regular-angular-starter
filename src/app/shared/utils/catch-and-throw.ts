@@ -2,9 +2,9 @@ import { catchError, isObservable, Observable, OperatorFunction, throwError } fr
 
 export const catchAndThrow = <T>(callback: (error: unknown) => unknown): OperatorFunction<T, T> =>
   catchError((err: unknown) => {
-    const ret = callback(err);
-    if (isObservable(ret)) {
-      return ret as Observable<never>;
+    const toReturn = callback(err);
+    if (isObservable(toReturn)) {
+      return toReturn as Observable<never>;
     } else {
       return throwError(() => err);
     }
