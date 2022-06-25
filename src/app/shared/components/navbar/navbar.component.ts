@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { map, tap } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 import { NgLetDirective } from '@shared/directives/let.directive';
+import { GlobalConstantsToken, IGlobalConstants } from 'src/app/settings';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,4 +17,7 @@ import { NgLetDirective } from '@shared/directives/let.directive';
     imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, NgLetDirective, RouterModule],
 })
 export class NavbarComponent {
+    constructor(
+        @Inject(GlobalConstantsToken) public globalConstants: IGlobalConstants,
+    ){}
 }

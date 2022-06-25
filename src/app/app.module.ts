@@ -23,6 +23,7 @@ import { UtilitiesStoreProviders } from './shared/components/utilities/utilities
 import { StoreModule } from './shared/store/store.module';
 
 import { AnyObject } from '@shared/utils/type';
+import { GlobalConstantsProvider } from './settings';
 
 registerLocaleData(localeEN);
 
@@ -66,6 +67,7 @@ function currencyMaskConfigFactory(): CurrencyMaskConfig {
         { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 5000 } as MatSnackBarConfig },
         { provide: TitleCasePipe, useClass: TitleCasePipe },
         LocaleMonthsProvider,
+        GlobalConstantsProvider,
     ],
     bootstrap: [AppComponent],
 })
