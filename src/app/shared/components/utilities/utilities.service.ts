@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { filterNil } from '@ngneat/elf';
 import { addEntities, getAllEntities, selectEntity, setEntities } from '@ngneat/elf-entities';
 import { Observable } from 'rxjs';
-import { arrayUtil } from 'st-utils';
 
 import { UtilitiesStore } from './utilities.store';
 import { Utility } from './utility';
@@ -38,8 +37,8 @@ export class UtilitiesService {
     const utilities = this.store.query(getAllEntities());
     this.store.update(
       setEntities(
-        arrayUtil(utilities)
-          .remove(id)
+        utilities
+          .filter((entity)=> entity.id !== id)
           .map((util, index) => ({
             ...util,
             style: {
@@ -47,7 +46,7 @@ export class UtilitiesService {
               left: getLeft(index),
             },
           }))
-          .toArray()
+          .slice()
       )
     );
     return this;

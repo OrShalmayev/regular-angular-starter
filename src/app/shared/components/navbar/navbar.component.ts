@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { NgLetDirective } from '@shared/directives/let.directive';
 import { GlobalConstantsToken, IGlobalConstants } from 'src/app/settings';
+import { GoBackButtonComponent } from '../go-back-button/go-back-button.component';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,7 +15,7 @@ import { GlobalConstantsToken, IGlobalConstants } from 'src/app/settings';
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
     standalone: true,
-    imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, NgLetDirective, RouterModule],
+    imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, NgLetDirective, RouterModule, GoBackButtonComponent],
 })
 export class NavbarComponent {
     constructor(
