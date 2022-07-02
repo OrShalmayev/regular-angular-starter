@@ -6,15 +6,16 @@ export interface IGlobalConstants {
     readonly APP_AUTHOR: string;
     readonly APP_AUTHOR_URL: string;
 }
-class GlobalConstants implements IGlobalConstants {
-    readonly APP_NAME: string = 'Angular-App';
-    readonly APP_VERSION: string = '1.0.0';
-    readonly APP_DESCRIPTION: string = 'Angular App';
-    readonly APP_AUTHOR: string = 'Or Shalmayev';
-    readonly APP_AUTHOR_URL: string = '';
-}
-export const GlobalConstantsToken = new InjectionToken<IGlobalConstants>('Global Constants');
+export const GlobalConstantsToken = new InjectionToken<IGlobalConstants>('Global Constants', {
+    factory: () => ({
+        APP_NAME: 'Angular-App',
+        APP_VERSION: '1.0.0',
+        APP_DESCRIPTION: 'Angular App',
+        APP_AUTHOR: 'Or Shalmayev',
+        APP_AUTHOR_URL: '',
+    }) 
+});
 export const GlobalConstantsProvider: Provider = {
-    provide: GlobalConstantsToken,
-    useClass: GlobalConstants,
+    provide: 'root',
+    useExisting: GlobalConstantsToken,
 };

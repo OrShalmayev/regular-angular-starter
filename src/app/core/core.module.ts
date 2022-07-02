@@ -1,6 +1,11 @@
-import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {LOCALE_ID, ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
+import {CommonModule, TitleCasePipe} from '@angular/common';
 import {CORE_SERVICES} from "@core/services";
+import { WINDOW, WINDOW_PROVIDERS } from './services/window.service';
+import { NAVIGATOR } from './tokens/navigator.token';
+import { AnyObject } from '@shared/utils/type';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiInterceptor } from './interceptors/api.interceptor';
 
 export function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     if (parentModule) {
@@ -26,7 +31,16 @@ export class CoreModule {
         return {
             ngModule: CoreModule,
             providers: [
+                ...WINDOW_PROVIDERS,
+                {
+                    provide: NAVIGATOR,
+                    useFactory: (window: Window | AnyObject) => window.navigator ?? {},
+                    deps: [WINDOW],
+                },
                 ...CORE_SERVICES,
+                { provide: HTTP_INTERCEPTORS, useExisting: ApiInterceptor, multi: true },
+                { provide: LOCALE_ID, useValue: 'en-US' },
+                { provide: TitleCasePipe, useClass: TitleCasePipe },
             ],
         };
     }

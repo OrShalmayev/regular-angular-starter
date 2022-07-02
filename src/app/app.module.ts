@@ -1,7 +1,7 @@
 import { registerLocaleData, TitleCasePipe } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import localeEN from '@angular/common/locales/en';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { MatDateFnsModule } from '@angular/material-date-fns-adapter';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
@@ -13,14 +13,11 @@ import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ngx-currency';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApiInterceptor } from './core/interceptors/api.interceptor';
-import { WINDOW, WINDOW_PROVIDERS } from './core/services/window.service';
 import { LocaleMonthsProvider } from './core/tokens/locale-months.token';
-import { NAVIGATOR } from './core/tokens/navigator.token';
 
 
-import { AnyObject } from '@shared/utils/type';
 import { GlobalConstantsProvider } from './settings';
+import { CoreModule } from '@core/core.module';
 
 registerLocaleData(localeEN);
 
@@ -45,23 +42,14 @@ function currencyMaskConfigFactory(): CurrencyMaskConfig {
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        CoreModule,
         MatDateFnsModule,
     ],
     providers: [
-        ...WINDOW_PROVIDERS,
-        {
-            provide: NAVIGATOR,
-            useFactory: (window: Window | AnyObject) => window.navigator ?? {},
-            deps: [WINDOW],
-        },
-        { provide: HTTP_INTERCEPTORS, useExisting: ApiInterceptor, multi: true },
-        // { provide: HTTP_INTERCEPTORS, useExisting: DateInterceptor, multi: true },
-        { provide: LOCALE_ID, useValue: 'en-US' },
         { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } as MatFormFieldDefaultOptions },
         { provide: MAT_DATE_LOCALE, useValue: dateFnsLocaleEN },
-        { provide: CURRENCY_MASK_CONFIG, useFactory: currencyMaskConfigFactory },
         { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 5000 } as MatSnackBarConfig },
-        { provide: TitleCasePipe, useClass: TitleCasePipe },
+        { provide: CURRENCY_MASK_CONFIG, useFactory: currencyMaskConfigFactory },
         LocaleMonthsProvider,
         GlobalConstantsProvider,
     ],
