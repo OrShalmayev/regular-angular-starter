@@ -18,6 +18,7 @@ import { LocaleMonthsProvider } from './core/tokens/locale-months.token';
 
 import { GlobalConstantsProvider } from './settings';
 import { CoreModule } from '@core/core.module';
+import { StateModule } from '@state/state.module';
 
 registerLocaleData(localeEN);
 
@@ -44,6 +45,7 @@ function currencyMaskConfigFactory(): CurrencyMaskConfig {
         BrowserAnimationsModule,
         CoreModule,
         MatDateFnsModule,
+        StateModule,
     ],
     providers: [
         { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } as MatFormFieldDefaultOptions },

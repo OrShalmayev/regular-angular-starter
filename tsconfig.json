@@ -28,6 +28,7 @@
       "@environment/*": ["./src/environments/*"],
       "@pages/*": ["./src/app/pages/*"],
       "@layouts/*": ["./src/app/layouts/*"],
+      "@state/*": ["./src/app/state/*"],
     }
   },
   "angularCompilerOptions": {
