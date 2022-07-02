@@ -12,9 +12,9 @@ import { isEmpty } from 'lodash';
 })
 export class FieldErrorComponent {
     private readonly _defaultKey = 'default';
-    errorMsgList: any = [];
-    @Input('controlName') controlName!: AbstractControl | AbstractControlDirective;
-    @Input('HTMLType') HTMLType: 'REGULAR' | 'MATERIAL' = 'REGULAR';
+    private errorMsgList: any = [];
+    @Input('fieldControl') readonly fieldControl!: AbstractControl | AbstractControlDirective;
+    @Input('HTMLType') readonly HTMLType: 'REGULAR' | 'MATERIAL' = 'REGULAR';
 
     errorMessage: any = {
         [this._defaultKey]: (params: any) => `Invalid format`,
@@ -26,11 +26,11 @@ export class FieldErrorComponent {
     };
 
     listErrors() {
-        if (!this.controlName || isEmpty(this.controlName.errors)) return [];
+        if (!this.fieldControl || isEmpty(this.fieldControl.errors)) return [];
 
         this.errorMsgList = [];
 
-        const controlErrKeyArr = Object.keys(<any>this.controlName.errors);
+        const controlErrKeyArr = Object.keys(<any>this.fieldControl.errors);
 
         controlErrKeyArr.map(error => {
             const errorMsgIncludesError: boolean = Object.keys(this.errorMessage).includes(error);
@@ -41,9 +41,9 @@ export class FieldErrorComponent {
                 );
                 error = this._defaultKey;
             }
-            this.controlName.touched || this.controlName.dirty
+            this.fieldControl.touched || this.fieldControl.dirty
                 ? //@ts-ignore
-                  this.errorMsgList.push(this.errorMessage[error](this.controlName.errors[error]))
+                  this.errorMsgList.push(this.errorMessage[error](this.fieldControl.errors[error]))
                 : '';
         });
         return this.errorMsgList;
