@@ -8,11 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     templateUrl: './field-error.component.html',
     styleUrls: ['./field-error.component.scss'],
     standalone: true,
-    imports: [CommonModule,MatFormFieldModule]
+    imports: [CommonModule, MatFormFieldModule],
 })
 export class FieldErrorComponent {
-    constructor(
-    ) {}
+    constructor() {}
 
     errorMsgList: any = [];
     private _default: 'default' = 'default';
@@ -24,14 +23,8 @@ export class FieldErrorComponent {
     errorMessage: any = {
         [this._default]: (params: any) => `Invalid format`,
         required: (params: any) => `Field is required`,
-        maxlength: (params: any) =>
-            `Maximum length of ${
-                params.requiredLength
-            } is required.`,
-        minlength: (params: any) =>
-            `Minimum length of ${
-                params.requiredLength
-            } is required`,
+        maxlength: (params: any) => `Maximum length of ${params.requiredLength} is required.`,
+        minlength: (params: any) => `Minimum length of ${params.requiredLength} is required`,
         pattern: (params: any) => `Invalid format`,
         email: (params: any) => `Email is not valid`,
     };
@@ -47,9 +40,9 @@ export class FieldErrorComponent {
                     );
                     error = this._default;
                 }
-                (this.controlName.touched || this.controlName.dirty)
-                    //@ts-ignore
-                    ? this.errorMsgList.push(this.errorMessage[error](this.controlName.errors[error]))
+                this.controlName.touched || this.controlName.dirty
+                    ? //@ts-ignore
+                      this.errorMsgList.push(this.errorMessage[error](this.controlName.errors[error]))
                     : '';
             });
             return this.errorMsgList;
