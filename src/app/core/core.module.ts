@@ -4,9 +4,13 @@ import {CORE_SERVICES} from "@core/services";
 import { WINDOW, WINDOW_PROVIDERS } from './services/window.service';
 import { NAVIGATOR } from './tokens/navigator.token';
 import { AnyObject } from '@shared/utils/type';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { CORE_PROVIDERS } from './providers';
+import { MatDateFnsModule } from '@angular/material-date-fns-adapter';
+import { AppRoutingModule } from '../app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 export function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     if (parentModule) {
@@ -14,12 +18,21 @@ export function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     }
 }
 
+const MODULES = [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDateFnsModule,
+    HttpClientModule,
+];
+
 @NgModule({
     declarations: [],
     imports: [
-        CommonModule,
+        ...MODULES,
     ],
-    exports: []
+    exports: [...MODULES]
 })
 export class CoreModule {
     constructor(
