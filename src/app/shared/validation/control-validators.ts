@@ -7,6 +7,7 @@ export const PASSWORD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])[!@#$%^()_[\]\{}|;':",.\
 export const ALLOWED_SPECIAL_CHARACTERS_REGEX = /[!@#$%^()_\-[\]\{}|;':",.\/<>?]/; // not allowed: &*+`~=
 export const VALID_LINK_REGEX =
     /(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+export const ONLY_HEBREW_ALLOWED_REGEX = /^[\u0590-\u05fe\s]+$/i;
 /**
  * Custom Validators
  */
