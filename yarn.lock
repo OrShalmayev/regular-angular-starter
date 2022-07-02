@@ -236,7 +236,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^14.0.0 || ^15.0.0", "@angular/core@~14.0.0", "@angular/core@14.0.0":
+"@angular/core@^14.0.0", "@angular/core@^14.0.0 || ^15.0.0", "@angular/core@~14.0.0", "@angular/core@14.0.0":
   "integrity" "sha512-Mj3r8iMlWfMbY+9DRUFZx1gKnA27Jwx3ff/VXeXBgfxaEKDYmlZSnliZSV6ssiHSUwn/U6yxDXFgcZL090zNBQ=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-14.0.0.tgz"
   "version" "14.0.0"
@@ -1355,25 +1355,12 @@
   "resolved" "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.3.tgz"
   "version" "2.0.3"
 
-"@ngneat/elf-devtools@~1.2.1":
-  "integrity" "sha512-emoTCmOxzFI3H04HGpagfaMY9OzmoCvTLoKGvTtN0Fx+JHLhj/HXzSzirAxrkWUwmNTAhCcOmbPPNjAeL1QAuA=="
-  "resolved" "https://registry.npmjs.org/@ngneat/elf-devtools/-/elf-devtools-1.2.1.tgz"
-  "version" "1.2.1"
-
-"@ngneat/elf-entities@~4.3.1":
-  "integrity" "sha512-CoCWgO8XsHN9bJOQHC517ZbYEEmRQrPEgMMoVrV210U9Q43/yfyEeRoyt2AOvw1PB8d5/I+/VqwHKVxJkuRFBA=="
-  "resolved" "https://registry.npmjs.org/@ngneat/elf-entities/-/elf-entities-4.3.1.tgz"
-  "version" "4.3.1"
-
-"@ngneat/elf-persist-state@~1.1.2":
-  "integrity" "sha512-3JDyU45OFGO1iybUk+wZKU6axezQfMNdkERAvJb7k1yPVjhEy7uKKYgfkxDKPvf+D7gXzARAIoK/5inCL2BofA=="
-  "resolved" "https://registry.npmjs.org/@ngneat/elf-persist-state/-/elf-persist-state-1.1.2.tgz"
-  "version" "1.1.2"
-
-"@ngneat/elf@~2.1.0":
-  "integrity" "sha512-R5BeYoBQ9DgtjlWAE8eqaYyDI5zgRmND7mbgDdbG1JUisaOopcxLMDKZYI9+HWSHcfKPk+XHgFlKQfAl470lNw=="
-  "resolved" "https://registry.npmjs.org/@ngneat/elf/-/elf-2.1.0.tgz"
-  "version" "2.1.0"
+"@ngrx/store@^14.0.1":
+  "integrity" "sha512-DoaH7MwRoE8KW6+c+mKczW7HrG9+Uuw+z8jWxZvL3wTnGyBaEOpu7GlVO/JN0nyz4/FW0MIBMYubCM5AAaaDpw=="
+  "resolved" "https://registry.npmjs.org/@ngrx/store/-/store-14.0.1.tgz"
+  "version" "14.0.1"
+  dependencies:
+    "tslib" "^2.0.0"
 
 "@ngtools/webpack@14.0.0":
   "integrity" "sha512-lUcJ5DiRCY+Xj01R38bDbAlELbO+0yT3n4zshBeiuzo/Lc+yQM2XhVe9stsI5I+SwH6YsCU9kp+jb7iaZh7L7w=="
@@ -6494,7 +6481,7 @@
   dependencies:
     "tslib" "^1.9.0"
 
-"rxjs@^6.5.3 || ^7.4.0", "rxjs@^7.5.5", "rxjs@~7.5.5":
+"rxjs@^6.5.3 || ^7.4.0", "rxjs@^6.5.3 || ^7.5.0", "rxjs@^7.5.5", "rxjs@~7.5.5":
   "integrity" "sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-7.5.5.tgz"
   "version" "7.5.5"
@@ -7302,7 +7289,7 @@
   "resolved" "https://registry.npmjs.org/typed-assert/-/typed-assert-1.0.9.tgz"
   "version" "1.0.9"
 
-"typescript@*", "typescript@^4.5.3", "typescript@>= 4.1.2", "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta", "typescript@>=4.6.2 <4.8", "typescript@~4.7.2":
+"typescript@*", "typescript@^4.5.3", "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta", "typescript@>=4.6.2 <4.8", "typescript@~4.7.2":
   "integrity" "sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A=="
   "resolved" "https://registry.npmjs.org/typescript/-/typescript-4.7.2.tgz"
   "version" "4.7.2"
