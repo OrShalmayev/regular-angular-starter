@@ -15,10 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocaleMonthsProvider } from './core/tokens/locale-months.token';
 
-
 import { GlobalConstantsProvider } from './settings';
 import { CoreModule } from '@core/core.module';
-import { FieldErrorComponent } from './shared/components/field-error/field-error.component';
 
 registerLocaleData(localeEN);
 
