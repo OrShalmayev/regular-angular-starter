@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
 import { NgLetDirective } from '@shared/directives/let.directive';
-import { GlobalConstantsToken, IGlobalConstants } from 'src/app/settings';
+import { globalConstantsToken, IGlobalConstants } from 'src/app/settings';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,6 +18,6 @@ import { GlobalConstantsToken, IGlobalConstants } from 'src/app/settings';
 })
 export class NavbarComponent {
     constructor(
-        @Inject(GlobalConstantsToken) public globalConstants: IGlobalConstants,
+        @Inject(globalConstantsToken) public globalConstants: IGlobalConstants,
     ){}
 }

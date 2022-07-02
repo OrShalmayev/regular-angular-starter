@@ -6,7 +6,7 @@ export interface IGlobalConstants {
     readonly APP_AUTHOR: string;
     readonly APP_AUTHOR_URL: string;
 }
-export const GlobalConstantsToken = new InjectionToken<IGlobalConstants>('Global Constants', {
+export const globalConstantsToken = new InjectionToken<IGlobalConstants>('Global Constants', {
     factory: () => ({
         APP_NAME: 'Angular-App',
         APP_VERSION: '1.0.0',
@@ -17,5 +17,5 @@ export const GlobalConstantsToken = new InjectionToken<IGlobalConstants>('Global
 });
 export const GlobalConstantsProvider: Provider = {
     provide: 'root',
-    useExisting: GlobalConstantsToken,
+    useExisting: globalConstantsToken,
 };
