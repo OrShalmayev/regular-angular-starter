@@ -6,6 +6,7 @@ import { NAVIGATOR } from './tokens/navigator.token';
 import { AnyObject } from '@shared/utils/type';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
+import { CORE_PROVIDERS } from './providers';
 
 export function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     if (parentModule) {
@@ -41,6 +42,7 @@ export class CoreModule {
                 { provide: HTTP_INTERCEPTORS, useExisting: ApiInterceptor, multi: true },
                 { provide: LOCALE_ID, useValue: 'en-US' },
                 { provide: TitleCasePipe, useClass: TitleCasePipe },
+                ...CORE_PROVIDERS,
             ],
         };
     }

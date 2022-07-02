@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, AbstractControlDirective } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { isEmpty } from 'lodash';
+import { BaseComponent } from '../base-component';
 @Component({
     selector: 'shared-field-error',
     templateUrl: './field-error.component.html',
@@ -10,7 +11,7 @@ import { isEmpty } from 'lodash';
     standalone: true,
     imports: [CommonModule, MatFormFieldModule],
 })
-export class FieldErrorComponent {
+export class FieldErrorComponent extends BaseComponent implements OnDestroy {
     private readonly _defaultKey = 'default';
     private errorMsgList: any = [];
     @Input('fieldControl') readonly fieldControl!: AbstractControl | AbstractControlDirective;
@@ -47,5 +48,9 @@ export class FieldErrorComponent {
                 : '';
         });
         return this.errorMsgList;
+    }
+
+    override ngOnDestroy() {
+        super.ngOnDestroy();
     }
 }
