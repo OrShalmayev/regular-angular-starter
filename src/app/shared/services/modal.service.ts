@@ -6,11 +6,11 @@ export type LazyFn<T = unknown> = () => Promise<ComponentType<T>>;
 
 @Injectable({ providedIn: MatDialogModule })
 export class ModalService extends MatDialog {
-  async openLazy<T, D = unknown, R = unknown>(
-    componentFn: LazyFn<T>,
-    config?: MatDialogConfig<D>
-  ): Promise<MatDialogRef<T, R>> {
-    const component = await componentFn();
-    return this.open(component, config);
-  }
+    async openLazy<T, D = unknown, R = unknown>(
+        componentFn: LazyFn<T>,
+        config?: MatDialogConfig<D>
+    ): Promise<MatDialogRef<T, R>> {
+        const component = await componentFn();
+        return this.open(component, config);
+    }
 }

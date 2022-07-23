@@ -1,0 +1,12 @@
+<ng-container [ngSwitch]="HTMLType">
+    <ng-container *ngSwitchCase="'REGULAR'">
+        <small class="text-danger" *ngFor="let errorMessage of listErrors(); let last=last;">
+            {{last ? errorMessage : ''}}
+        </small>
+    </ng-container>
+    <ng-container *ngSwitchCase="'MATERIAL'">
+        <mat-error *ngFor="let errorMessage of listErrors(); let last=last;">
+            {{last ? errorMessage : ''}}
+        </mat-error>
+    </ng-container>
+</ng-container>
