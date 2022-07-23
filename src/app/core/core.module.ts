@@ -11,6 +11,7 @@ import { MatDateFnsModule } from '@angular/material-date-fns-adapter';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { StateModule } from '@state/state.module';
 
 export function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     if (parentModule) {
@@ -25,6 +26,7 @@ const MODULES = [
     BrowserAnimationsModule,
     MatDateFnsModule,
     HttpClientModule,
+    StateModule,
 ];
 
 @NgModule({

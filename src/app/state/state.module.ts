@@ -23,6 +23,6 @@ export const NGRX_MODULES: any[] = [
 @NgModule({
     declarations: [],
     imports: [CommonModule, ...NGRX_MODULES],
-    exports: [...NGRX_MODULES],
+    exports: [],
 })
 export class StateModule {}
