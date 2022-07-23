@@ -1,5 +1,6 @@
 import { Directive, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, ElementRef, HostListener } from "@angular/core";
 
+// referece: https://timdeschryver.dev/blog/making-your-application-feel-faster-by-prefetching-data-with-ngrx#prefetching
 @Directive({
     selector: '[prefetch]',
 })
