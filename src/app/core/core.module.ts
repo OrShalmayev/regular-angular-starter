@@ -45,7 +45,7 @@ const MODULES = [
         ...CORE_SERVICES,
         { provide: HTTP_INTERCEPTORS, useExisting: ApiInterceptor, multi: true },
         { provide: LOCALE_ID, useValue: 'en-US' },
-        { provide: TitleCasePipe, useClass: TitleCasePipe },
+        TitleCasePipe,
         ...CORE_PROVIDERS,
     ]
 })
