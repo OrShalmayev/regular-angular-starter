@@ -4,99 +4,103 @@
 
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background: #303030;
-  color: #fff;
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    background: #303030;
+    color: #fff;
 }
 
 :root {
-  --navbar-height: 64px;
+    --navbar-height: 64px;
 }
 
 @include mixins.sm-screen {
-  :root {
-    --navbar-height: 56px;
-  }
+    :root {
+        --navbar-height: 56px;
+    }
 }
 
 @include mat.core();
 @include mat.all-component-themes(var.$theme);
 
+main#base-layout-main {
+    margin-top: calc(var(--navbar-height) + 1rem);
+}
+
 .mat-progress-bar.footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .mat-dialog-container {
-  position: relative;
+    position: relative;
 }
 
 .mat-form-field {
-  width: 100%;
-  margin-bottom: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .mat-card.card-selectable {
-  height: 200px;
-  width: 125px;
-  display: grid;
-  place-items: center;
-  border: 2px solid transparent;
-  transition: border 200ms ease;
-  &:hover {
-    border-color: var.$primary-color;
-  }
+    height: 200px;
+    width: 125px;
+    display: grid;
+    place-items: center;
+    border: 2px solid transparent;
+    transition: border 200ms ease;
+    &:hover {
+        border-color: var.$primary-color;
+    }
 }
 
 .cards-container {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .cards {
-  display: flex;
-  grid-gap: 1rem;
-  flex-wrap: wrap;
+    display: flex;
+    grid-gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .button-actions {
-  display: block;
+    display: block;
 
-  .mat-button-base:not(:last-child) {
-    margin-right: 1rem;
-  }
-
-  @include mixins.md-screen {
-    .mat-button-base {
-      width: 100%;
-
-      &:not(:last-child) {
-        margin-bottom: 1rem;
-        margin-right: 0;
-      }
+    .mat-button-base:not(:last-child) {
+        margin-right: 1rem;
     }
-  }
+
+    @include mixins.md-screen {
+        .mat-button-base {
+            width: 100%;
+
+            &:not(:last-child) {
+                margin-bottom: 1rem;
+                margin-right: 0;
+            }
+        }
+    }
 }
 
 .utility {
-  &.button,
-  &.mat-fab,
-  &.mat-button-base,
-  &* {
-    display: block;
-    position: fixed;
-    top: calc(1rem + var(--navbar-height));
-  }
+    &.button,
+    &.mat-fab,
+    &.mat-button-base,
+    &* {
+        display: block;
+        position: fixed;
+        top: calc(1rem + var(--navbar-height));
+    }
 }
 
 .mat-menu-item .mat-pseudo-checkbox {
-  margin-right: 16px;
-  vertical-align: middle;
+    margin-right: 16px;
+    vertical-align: middle;
 }
