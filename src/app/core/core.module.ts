@@ -1,6 +1,6 @@
-import {LOCALE_ID, ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
-import {CommonModule, TitleCasePipe} from '@angular/common';
-import {CORE_SERVICES} from "@core/services";
+import { LOCALE_ID, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { CommonModule, TitleCasePipe } from '@angular/common';
+import { CORE_SERVICES } from '@core/services';
 import { WINDOW, WINDOW_PROVIDERS } from './services/window.service';
 import { NAVIGATOR } from './tokens/navigator.token';
 import { AnyObject } from '@shared/utils/type';
@@ -18,7 +18,10 @@ export function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     }
 }
 
-const MODULES = [
+const components: any[] = [];
+const directives: any[] = [];
+const pipes: any[] = [];
+const modules: any[] = [
     BrowserModule,
     CommonModule,
     AppRoutingModule,
@@ -26,13 +29,21 @@ const MODULES = [
     MatDateFnsModule,
     HttpClientModule,
 ];
+const exports: any[] = [
+    // Components
+    ...components,
+    // Directives
+    ...directives,
+    // Pipes
+    ...pipes,
+    // Modules
+    ...modules,
+];
 
 @NgModule({
-    declarations: [],
-    imports: [
-        ...MODULES,
-    ],
-    exports: [...MODULES],
+    declarations: [...components, ...directives, ...pipes],
+    imports: [...modules],
+    exports,
     providers: [
         ...WINDOW_PROVIDERS,
         {
@@ -45,13 +56,10 @@ const MODULES = [
         { provide: LOCALE_ID, useValue: 'en-US' },
         TitleCasePipe,
         ...CORE_PROVIDERS,
-    ]
+    ],
 })
 export class CoreModule {
-    constructor(
-        @Optional() @SkipSelf() parentModule: CoreModule,
-    ) {
+    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
         throwIfAlreadyLoaded(parentModule, 'CoreModule');
     }
 }
-

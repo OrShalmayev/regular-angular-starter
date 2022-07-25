@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, inject, OnInit } from '@angular/core';
+import { loaderTypesToken } from '@shared/tokens/loaders.token';
 
 @Component({
     selector: 'app-home',
@@ -7,6 +8,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
+    loaderType = inject(loaderTypesToken);
     constructor() {}
     ngOnInit(): void {
     }
