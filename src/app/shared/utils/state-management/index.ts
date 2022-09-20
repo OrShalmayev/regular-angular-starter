@@ -1,59 +1,59 @@
-import { ActionCreator, createAction } from '@ngrx/store';
-import { TypedAction } from '@ngrx/store/src/models';
 /**
  * Enums
  */
+import {ActionCreator, createAction} from "@ngrx/store";
+import {TypedAction} from "@ngrx/store/src/models";
+
+export enum EActionTypes {
+    Cached = "CACHED",
+    NewData = "NEW_DATA",
+}
+export enum EStateUpdaterActions {
+    Success = "SUCCESS",
+    Loading = "LOADING",
+    Error = "ERROR",
+}
 export const enum ELoadingState {
     INIT = 'INIT',
     LOADING = 'LOADING',
     LOADED = 'LOADED',
 }
-
 /***
  * Interfaces
  */
 export interface IErrorState {
     errorMsg: string;
 }
-
 /**
  * Types
  */
-export type TCallState = ELoadingState | IErrorState;
+export type TActionTypes = EActionTypes;
+export type TStateUpdaterActions = EStateUpdaterActions;
 
+export type TCallState = ELoadingState | IErrorState;
 /**
  * Utils
  */
 // reference: https://indepth.dev/posts/1451/ngrx-best-practices-new
 export function createHTTPActions<RequestPayload = void, ResponsePayload = void, ErrorPayload = void>(
-    actionType: string
+    actionType: string,
 ): [
-    ActionCreator<
-        string,
-        (props?: RequestPayload) => {
-            payload: RequestPayload;
-        } & TypedAction<string>
-    >,
-    ActionCreator<
-        string,
-        (props?: ResponsePayload) => {
-            payload: ResponsePayload;
-        } & TypedAction<string>
-    >,
-    ActionCreator<
-        string,
-        (props?: ErrorPayload) => {
-            payload: ErrorPayload;
-        } & TypedAction<string>
-    >
+    ActionCreator<string, (props?: RequestPayload) => {
+        payload: RequestPayload;
+    } & TypedAction<string>>,
+    ActionCreator<string, (props?: ResponsePayload) => {
+        payload: ResponsePayload;
+    } & TypedAction<string>>,
+    ActionCreator<string, (props?: ErrorPayload) => {
+        payload: ErrorPayload;
+    } & TypedAction<string>>,
 ] {
     return [
-        //@ts-ignore
-        createAction(actionType, (payload: RequestPayload) => ({ payload })),
-        //@ts-ignore
-        createAction(`${actionType} Success`, (payload?: ResponsePayload) => ({ payload })),
-        //@ts-ignore
-        createAction(`${actionType} Error`, (payload: ErrorPayload) => ({ payload })),
+        createAction(actionType, (payload: RequestPayload) => ({payload})),
+        createAction(
+            `${actionType} Success`,
+            (payload?: ResponsePayload) => ({payload})),
+        createAction(`${actionType} Error`, (payload: ErrorPayload) => ({payload})),
     ];
 }
 // Helper function to extract error, if there is one.
