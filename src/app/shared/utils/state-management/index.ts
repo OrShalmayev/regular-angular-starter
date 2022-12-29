@@ -64,3 +64,22 @@ export function getError(callState: TCallState): string | null {
     }
     return null;
 }
+
+
+const isLoading = (state:{callState}):boolean => {
+    const {callState} = state;
+
+    return callState === LoadingState.Loading || callState === LoadingState.Init;
+};
+
+const isError = (state:{callState}):boolean => {
+    const {callState} = state;
+
+    return callState === LoadingState.Failed;
+};
+
+export const storeUtils = {
+    isLoading,
+    isError
+};
+
