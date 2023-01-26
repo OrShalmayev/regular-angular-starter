@@ -83,6 +83,19 @@ export const websitesValidators: ValidatorFn[] = [
     Validators.maxLength(100),
     Validators.pattern(VALID_LINK_REGEX),
 ];
+
+export function matchValidator(
+    matchTo: string
+): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+        const matchToControl = control.parent?.controls?.[matchTo] as AbstractControl;
+
+        return Boolean(control.parent) &&
+        Boolean(control.parent.value) &&
+        control.value === matchToControl.value ? null : {notMatching: true};
+    };
+}
+
 export const phoneValidators: ValidatorFn[] = [Validators.required, Validators.pattern(/^[0-9]{10,15}$/)];
 export const emailValidators: ValidatorFn[] = [Validators.required, Validators.email];
 export const enAndNumbersAndSpaceValidators: ValidatorFn = Validators.pattern(onlyEnglishAndNumbersAndSpaceRgx);
