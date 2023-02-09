@@ -49,8 +49,9 @@ export const debug = function debug<T>(tag: string):MonoTypeOperatorFunction<T> 
     })
 }
 
+
 export function distinctOrganization<T>(currentOrganization$: Observable<Organization>) {
-    return (source: Observable<T>) => {
+    return (source: Observable<T>): Observable<Organization> => {
         return new Observable(subscriber => {
             return source.pipe(
                 switchMap(() => {
