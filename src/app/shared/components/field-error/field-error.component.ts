@@ -11,46 +11,63 @@ import { BaseComponent } from '../base-component';
     standalone: true,
     imports: [CommonModule, MatFormFieldModule],
 })
-export class FieldErrorComponent extends BaseComponent implements OnDestroy {
-    private readonly _defaultKey = 'default';
-    private errorMsgList: any = [];
-    @Input('fieldControl') readonly fieldControl!: AbstractControl | AbstractControlDirective;
-    @Input('HTMLType') readonly HTMLType: 'REGULAR' | 'MATERIAL' = 'REGULAR';
+export class FieldErrorComponent {
+    @Input() control!: FormControl;
 
-    errorMessage: any = {
-        [this._defaultKey]: (params: any) => `Invalid format`,
-        required: (params: any) => `Field is required`,
+    private readonly _defaultErrorKey = 'default';
+
+    readonly errorMessage: any = {
+        [this._defaultErrorKey]: (params: any) => `Invalid format`,
+        required: (params: any) => `Field is required.`,
         maxlength: (params: any) => `Maximum length of ${params.requiredLength} is required.`,
         minlength: (params: any) => `Minimum length of ${params.requiredLength} is required`,
-        pattern: (params: any) => `Invalid format`,
-        email: (params: any) => `Email is not valid`,
+        pattern: (params: any) => `Invalid format.`,
+        accountIdsNotValid: (params: any) => 'One of the ids is invalid',
+        hasWhitespace: (params: any) => 'Input has white space',
     };
 
-    listErrors() {
-        if (!this.fieldControl || isEmpty(this.fieldControl.errors)) return [];
+    errorMessage$!: Observable<string>;
 
-        this.errorMsgList = [];
-
-        const controlErrKeyArr = Object.keys(<any>this.fieldControl.errors);
-
-        controlErrKeyArr.map(error => {
-            const errorMsgIncludesError: boolean = Object.keys(this.errorMessage).includes(error);
-
-            if (!errorMsgIncludesError) {
-                console.warn(
-                    `${error} didnt found at error component errorMessage object.\n setting error to default.`
-                );
-                error = this._defaultKey;
-            }
-            this.fieldControl.touched || this.fieldControl.dirty
-                ? //@ts-ignore
-                  this.errorMsgList.push(this.errorMessage[error](this.fieldControl.errors[error]))
-                : '';
-        });
-        return this.errorMsgList;
+    ngOnInit(): void {
+        this.errorMessage$ = this.control.valueChanges.pipe(
+            map(() => {
+                const lastErrorMessage = this.listErrors().pop()
+                return lastErrorMessage;
+            })
+        );
     }
 
-    override ngOnDestroy() {
-        super.ngOnDestroy();
+    listErrors() {
+        let retVal = [];
+        const hasErrors = this.control && isEmpty(this.control.errors) === false
+
+        if (hasErrors === false) return retVal;
+
+        const controlErrKeyArr = Object.keys(this.control.errors);
+
+        retVal = controlErrKeyArr.reduce((errList, errorKey) => {
+            const errorKeyExistsInErrorMessages = Object.keys(this.errorMessage).includes(errorKey);
+            const shouldAddErrorToList = this.control.touched || this.control.dirty;
+            const controlErrorObject = this.control.errors[errorKey];
+            let errorMessage = this.errorMessage[errorKey]?.(controlErrorObject);
+            const hasCustomMessage = controlErrorObject?.customMessage;
+            const shouldShowDefaultErrorMessage = errorKeyExistsInErrorMessages === false && hasCustomMessage === false;
+
+            if (shouldShowDefaultErrorMessage) {
+                errorMessage = this.errorMessage[this._defaultErrorKey]();
+            }
+
+            if (hasCustomMessage) {
+                errorMessage = hasCustomMessage;
+            }
+
+            if (shouldAddErrorToList) {
+                errList.push(errorMessage);
+            }
+
+            return errList;
+        }, []).filter(Boolean);
+
+        return retVal;
     }
 }
