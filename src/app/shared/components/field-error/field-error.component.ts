@@ -12,7 +12,7 @@ import { BaseComponent } from '../base-component';
     imports: [CommonModule, MatFormFieldModule],
 })
 export class FieldErrorComponent {
-    @Input() control!: FormControl;
+     @Input() control!: FormControl;
 
     private readonly _defaultErrorKey = 'default';
 
@@ -29,16 +29,16 @@ export class FieldErrorComponent {
     errorMessage$!: Observable<string>;
 
     ngOnInit(): void {
-        this.errorMessage$ = this.control.valueChanges.pipe(
+        this.errorMessage$ = this.control.statusChanges.pipe(
             map(() => {
-                const lastErrorMessage = this.listErrors().pop()
+                const lastErrorMessage = this.listErrors().pop();
                 return lastErrorMessage;
             })
         );
     }
 
-    listErrors() {
-        let retVal = [];
+    listErrors(): string[] {
+        let retVal: string[] = [];
         const hasErrors = this.control && isEmpty(this.control.errors) === false
 
         if (hasErrors === false) return retVal;
@@ -66,7 +66,7 @@ export class FieldErrorComponent {
             }
 
             return errList;
-        }, []).filter(Boolean);
+        }, [] as string[]).filter(Boolean);
 
         return retVal;
     }
